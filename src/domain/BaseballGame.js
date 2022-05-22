@@ -1,4 +1,4 @@
-import { HINT } from '../constants.js';
+import { HINT, EMPTY_STR } from '../constants.js';
 
 const { pickNumberInRange } = MissionUtils.Random;
 
@@ -24,5 +24,31 @@ export default class BaseballGame {
     }
 
     return Array.from(result).join('');
+  }
+
+  play(computerInputNumbers, userInputNumbers) {
+    if (computerInputNumbers == userInputNumbers) {
+      return HINT.CORRECT;
+    }
+
+    let strike = 0;
+    let ball = 0;
+
+    for (let i = 0; i < computerInputNumbers.length; i++) {
+      if (computerInputNumbers[i] === userInputNumbers[i]) {
+        strike++;
+      } else if (userInputNumbers.indexOf(computerInputNumbers[i]) !== -1) {
+        ball++;
+      }
+    }
+
+    if (!strike && !ball) {
+      return HINT.NOTHING;
+    }
+
+    let ballStr = ball ? `${ball}${HINT.BALL}` : `${EMPTY_STR}`;
+    let strikeStr = strike ? `${strike}${HINT.STRIKE}` : `${EMPTY_STR}`;
+
+    return ballStr + strikeStr;
   }
 }
