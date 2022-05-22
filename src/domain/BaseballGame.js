@@ -7,11 +7,14 @@ export default class BaseballGame {
     this.input = input;
     this.result = result;
     this.submitBtn = submitBtn;
+
     this.computerInputNumbers = this.getComputerInputNumbers();
+
     this.submitBtn.addEventListener('click', (event) => {
       event.preventDefault();
       const userInputNumbers = this.input.value;
       const playResult = this.play(this.computerInputNumbers, userInputNumbers);
+      this.render(playResult);
     });
   }
 
@@ -50,5 +53,9 @@ export default class BaseballGame {
     let strikeStr = strike ? `${strike}${HINT.STRIKE}` : `${EMPTY_STR}`;
 
     return ballStr + strikeStr;
+  }
+
+  render(resultStr) {
+    this.result.innerHTML = resultStr;
   }
 }
