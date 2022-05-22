@@ -58,7 +58,7 @@ export default class BaseballGame {
   }
 
   bindRestartEvent() {
-    const restartBtn = document.querySelector('#restart');
+    const restartBtn = document.querySelector('#game-restart-button');
     restartBtn.addEventListener('click', (event) => {
       this.computerInputNumbers = this.getComputerInputNumbers();
       this.initInput();
