@@ -1,4 +1,4 @@
-import { HINT, EMPTY_STR } from '../constants.js';
+import { HINT, EMPTY_STR, RESTART_TEMPLATE } from '../constants.js';
 
 const { pickNumberInRange } = MissionUtils.Random;
 
@@ -10,11 +10,20 @@ export default class BaseballGame {
 
     this.computerInputNumbers = this.getComputerInputNumbers();
 
-    this.submitBtn.addEventListener('click', (event) => {
+    this.submitBtn = this.submitBtn.addEventListener('click', (event) => {
       event.preventDefault();
       const userInputNumbers = this.input.value;
       const playResult = this.play(this.computerInputNumbers, userInputNumbers);
       this.render(playResult);
+    });
+  }
+
+  bindRestartEvent() {
+    const restartBtn = document.querySelector('#restart');
+    restartBtn.addEventListener('click', (event) => {
+      this.computerInputNumbers = this.getComputerInputNumbers();
+      this.input.value = EMPTY_STR;
+      this.result.innerHTML = EMPTY_STR;
     });
   }
 
@@ -57,5 +66,10 @@ export default class BaseballGame {
 
   render(resultStr) {
     this.result.innerHTML = resultStr;
+
+    if (resultStr === HINT.CORRECT) {
+      this.result.innerHTML += RESTART_TEMPLATE;
+      this.bindRestartEvent();
+    }
   }
 }
