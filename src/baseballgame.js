@@ -1,20 +1,24 @@
 class BaseballGame {
   play(computerInputNumber, playerInputNumber) {
-    // playerInputNumber 의 유효성 판단
     if (!this.isPlayerInputNumberValid(playerInputNumber)) {
       this.alertErrorMessage();
       document.getElementById("user-input").innerText = "";
     }
     // computerNumber와 playInputNumber를 비교
-    return "";
-  }
-
-  compareNumber(computerInputNumber, playerInputNumber) {
-    const strikeCount = this.findStrikeCount(
+    const [strikeCount, ballCount] = this.makeCompareResult(
       computerInputNumber,
       playerInputNumber
     );
-    const ballCount = this.findBallCount(
+    // 알맞게 조리해서 리턴
+    return "";
+  }
+
+  makeCompareResult(computerInputNumber, playerInputNumber) {
+    const strikeCount = this.countStrike(
+      computerInputNumber,
+      playerInputNumber
+    );
+    const ballCount = this.countBall(
       computerInputNumber,
       playerInputNumber,
       strikeCount
@@ -22,7 +26,7 @@ class BaseballGame {
     return [strikeCount, ballCount];
   }
 
-  findBallCount(computerInputNumber, playerInputNumber, strikeCount) {
+  countBall(computerInputNumber, playerInputNumber, strikeCount) {
     let ballMatchCount = 0;
     for (let i = 0; i < computerInputNumber.length; i++) {
       if (playerInputNumber.includes(computerInputNumber[i])) ballMatchCount++;
@@ -30,7 +34,7 @@ class BaseballGame {
     return ballMatchCount;
   }
 
-  findStrikeCount(computerInputNumber, playerInputNumber) {
+  countStrike(computerInputNumber, playerInputNumber) {
     let strikeCount = 0;
     for (let i = 0; i < computerInputNumber.length; i++) {
       if (computerInputNumber[i] === playerInputNumber[i]) strikeCount++;
