@@ -93,10 +93,10 @@ export default class BaseballGame {
     }
 
     for (let i = 0; i < duplicateCountTable.length; i++) {
-      if (duplicateCountTable[i] >= 2) return false;
+      if (duplicateCountTable[i] >= 2) return true;
     }
 
-    return true;
+    return false;
   }
 
   alertErrorMessage() {
