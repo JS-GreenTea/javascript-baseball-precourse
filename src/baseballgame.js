@@ -15,7 +15,19 @@ class BaseballGame {
     //힌트를 출력한다.
   }
 
-  isPlayerInputNumberValid(playerInputNumber) {}
+  isPlayerInputNumberValid(playerInputNumber) {
+    const numReg = /[\d]+/;
+
+    if (playerInputNumber.length !== 3) return false;
+
+    if (playerInputNumber.match(numReg)[0].length !== 3) return false;
+
+    if (this.isDuplicateNumber(playerInputNumber)) return false;
+
+    return true;
+  }
+
+  isDuplicateNumber(playerInputNumber) {}
 
   alertErrorMessage() {
     window.alert("유효하지 않은 입력입니다.");
