@@ -5,7 +5,7 @@ export default class Computer {
   generateRandomNumber() {
     const generateNumbers = [];
     while (generateNumbers.length !== 3) {
-      const randomNumber = Random.pickNumberInRange(1, 9);
+      const randomNumber = MissionUtils.Random.pickNumberInRange(1, 9);
       if (!generateNumbers.includes(randomNumber))
         generateNumbers.push(randomNumber);
     }
