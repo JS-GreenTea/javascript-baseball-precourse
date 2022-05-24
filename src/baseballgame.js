@@ -27,7 +27,22 @@ class BaseballGame {
     return true;
   }
 
-  isDuplicateNumber(playerInputNumber) {}
+  isDuplicateNumber(playerInputNumber) {
+    const duplicateCountTable = [];
+    for (let i = 0; i < 11; i++) {
+      duplicateCountTable.push(0);
+    }
+
+    for (let i = 0; i < playerInputNumber.length; i++) {
+      duplicateCountTable[playerInputNumber[i]]++;
+    }
+
+    for (let i = 0; i < duplicateCountTable.length; i++) {
+      if (duplicateCountTable[i] >= 2) return false;
+    }
+
+    return true;
+  }
 
   alertErrorMessage() {
     window.alert("유효하지 않은 입력입니다.");
