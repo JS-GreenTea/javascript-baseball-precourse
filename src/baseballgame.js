@@ -51,8 +51,21 @@ export default class BaseballGame {
     if (strikeCount === 0 && ballCount === 0) return "낫싱";
   }
 
-  printHint() {
-    //힌트를 출력한다.
+  decideResult(returnFormat) {
+    if (returnFormat === "승리") {
+      document.getElementById("game-restart-button").style.display = "block";
+      this.printWin();
+      return;
+    }
+    this.printHint(returnFormat);
+  }
+
+  printHint(returnFormat) {
+    document.getElementById("result").innerText = returnFormat;
+  }
+
+  printWin() {
+    document.getElementById("result").innerText = " 정답을 맞추셨습니다 ~ ㅊㅊ";
   }
 
   isPlayerInputNumberValid(playerInputNumber) {
