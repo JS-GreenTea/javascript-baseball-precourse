@@ -1,16 +1,16 @@
-class BaseballGame {
+export default class BaseballGame {
   play(computerInputNumber, playerInputNumber) {
     if (!this.isPlayerInputNumberValid(playerInputNumber)) {
       this.alertErrorMessage();
       document.getElementById("user-input").innerText = "";
     }
-    // computerNumber와 playInputNumber를 비교
+
     const [strikeCount, ballCount] = this.makeCompareResult(
       computerInputNumber,
       playerInputNumber
     );
-    // 알맞게 조리해서 리턴
-    return "";
+
+    return this.setReturnFormat(strikeCount, ballCount);
   }
 
   makeCompareResult(computerInputNumber, playerInputNumber) {
@@ -42,10 +42,13 @@ class BaseballGame {
     return strikeCount;
   }
 
-  decideResult() {
-    //play의 결과에 따라 return 값이 달라진다.
-    //사용자가 game에서 승리하지 않았을 시 false 리턴해 hint를 출력하고 play를 반복 수행하게 한다.
-    //사용자가 game에서 승리할 경우 true를 리턴헤 replay를 할 수 있게 한다.
+  setReturnFormat(strikeCount, ballCount) {
+    if (strikeCount === 3) return "승리";
+    if (strikeCount > 0 && ballCount > 0)
+      return `${ballCount}볼 ${strikeCount}스트라이크`;
+    if (strikeCount > 0 && ballCount === 0) return `${strikeCount}스트라이크`;
+    if (strikeCount === 0 && ballCount > 0) return `${ballCount}볼`;
+    if (strikeCount === 0 && ballCount === 0) return "낫싱";
   }
 
   printHint() {
