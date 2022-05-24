@@ -1,8 +1,41 @@
 class BaseballGame {
   play(computerInputNumber, playerInputNumber) {
     // playerInputNumber 의 유효성 판단
+    if (!this.isPlayerInputNumberValid(playerInputNumber)) {
+      this.alertErrorMessage();
+      document.getElementById("user-input").innerText = "";
+    }
     // computerNumber와 playInputNumber를 비교
     return "";
+  }
+
+  compareNumber(computerInputNumber, playerInputNumber) {
+    const strikeCount = this.findStrikeCount(
+      computerInputNumber,
+      playerInputNumber
+    );
+    const ballCount = this.findBallCount(
+      computerInputNumber,
+      playerInputNumber,
+      strikeCount
+    );
+    return [strikeCount, ballCount];
+  }
+
+  findBallCount(computerInputNumber, playerInputNumber, strikeCount) {
+    let ballMatchCount = 0;
+    for (let i = 0; i < computerInputNumber.length; i++) {
+      if (playerInputNumber.includes(computerInputNumber[i])) ballMatchCount++;
+    }
+    return ballMatchCount;
+  }
+
+  findStrikeCount(computerInputNumber, playerInputNumber) {
+    let strikeCount = 0;
+    for (let i = 0; i < computerInputNumber.length; i++) {
+      if (computerInputNumber[i] === playerInputNumber[i]) strikeCount++;
+    }
+    return strikeCount;
   }
 
   decideResult() {
