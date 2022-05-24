@@ -28,10 +28,12 @@ export default class BaseballGame {
 
   countBall(computerInputNumber, playerInputNumber, strikeCount) {
     let ballMatchCount = 0;
+
     for (let i = 0; i < computerInputNumber.length; i++) {
       if (playerInputNumber.includes(computerInputNumber[i])) ballMatchCount++;
     }
-    return ballMatchCount;
+    let ballCount = ballMatchCount - strikeCount;
+    return ballCount;
   }
 
   countStrike(computerInputNumber, playerInputNumber) {
