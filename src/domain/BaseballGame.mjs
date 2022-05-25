@@ -1,11 +1,12 @@
-import { isDuplicated, isInvalidLength, includeSpace } from './validator.js';
+import { isDuplicated, isInvalidLength, includeSpace } from './validator.mjs';
 import {
   HINT,
   EMPTY_STR,
   RESTART_TEMPLATE,
   ALERT_MESSAGE,
-} from '../constants.js';
+} from '../constants.mjs';
 
+/* global MissionUtils */
 const { pickNumberInRange } = MissionUtils.Random;
 
 export default class BaseballGame {
@@ -30,9 +31,9 @@ export default class BaseballGame {
   }
 
   validateInput(inputNumbers) {
-    let message = [];
+    const message = [];
 
-    if (isNaN(inputNumbers)) {
+    if (Number.isNaN(inputNumbers)) {
       message.push(ALERT_MESSAGE.NAN);
     }
     if (includeSpace(inputNumbers)) {
@@ -59,14 +60,14 @@ export default class BaseballGame {
 
   bindRestartEvent() {
     const restartBtn = document.querySelector('#game-restart-button');
-    restartBtn.addEventListener('click', (event) => {
+    restartBtn.addEventListener('click', () => {
       this.computerInputNumbers = this.getComputerInputNumbers();
       this.initInput();
     });
   }
 
   getComputerInputNumbers() {
-    let result = new Set();
+    const result = new Set();
 
     while (result.size < 3) {
       const pickedNumber = pickNumberInRange(1, 9);
@@ -77,18 +78,18 @@ export default class BaseballGame {
   }
 
   play(computerInputNumbers, userInputNumbers) {
-    if (computerInputNumbers == userInputNumbers) {
+    if (computerInputNumbers === userInputNumbers) {
       return HINT.CORRECT;
     }
 
     let strike = 0;
     let ball = 0;
 
-    for (let i = 0; i < computerInputNumbers.length; i++) {
+    for (let i = 0; i < computerInputNumbers.length; i += 1) {
       if (computerInputNumbers[i] === userInputNumbers[i]) {
-        strike++;
+        strike += 1;
       } else if (userInputNumbers.indexOf(computerInputNumbers[i]) !== -1) {
-        ball++;
+        ball += 1;
       }
     }
 
@@ -96,8 +97,8 @@ export default class BaseballGame {
       return HINT.NOTHING;
     }
 
-    let ballStr = ball ? `${ball}${HINT.BALL}` : `${EMPTY_STR}`;
-    let strikeStr = strike ? `${strike}${HINT.STRIKE}` : `${EMPTY_STR}`;
+    const ballStr = ball ? `${ball}${HINT.BALL}` : `${EMPTY_STR}`;
+    const strikeStr = strike ? `${strike}${HINT.STRIKE}` : `${EMPTY_STR}`;
 
     return ballStr + strikeStr;
   }

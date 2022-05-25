@@ -1,4 +1,4 @@
-import BaseballGame from './domain/BaseballGame.js';
+import BaseballGame from './domain/BaseballGame.mjs';
 
 const input = document.querySelector('#user-input');
 const result = document.querySelector('#result');
