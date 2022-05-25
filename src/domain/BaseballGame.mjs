@@ -22,17 +22,24 @@ export default class BaseballGame {
 
     this.computerInputNumbers = this.getComputerInputNumbers();
 
-    this.submitBtn = this.submitBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-      const userInputNumbers = this.input.value;
-      if (!this.validateInput(userInputNumbers)) {
-        this.initInput();
-        return;
-      }
-
-      const playResult = this.play(this.computerInputNumbers, userInputNumbers);
-      this.render(playResult);
+    this.submitBtn.addEventListener('click', (event) => {
+      this.bindSubmitEvent(event);
     });
+  }
+
+  bindSubmitEvent(event) {
+    event.preventDefault();
+
+    const userInputNumbers = this.input.value;
+
+    if (!this.validateInput(userInputNumbers)) {
+      this.initInput();
+      return;
+    }
+
+    const playResult = this.play(this.computerInputNumbers, userInputNumbers);
+
+    this.render(playResult);
   }
 
   validateInput(inputNumbers) {
