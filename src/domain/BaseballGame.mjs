@@ -1,4 +1,9 @@
-import { isDuplicated, isInvalidLength, includeSpace } from './validator.mjs';
+import {
+  isDuplicated,
+  isInvalidLength,
+  includeSpace,
+  isNaN,
+} from './validator.mjs';
 import {
   HINT,
   EMPTY_STR,
@@ -33,7 +38,7 @@ export default class BaseballGame {
   validateInput(inputNumbers) {
     const message = [];
 
-    if (Number.isNaN(inputNumbers)) {
+    if (isNaN(inputNumbers)) {
       message.push(ALERT_MESSAGE.NAN);
     }
     if (includeSpace(inputNumbers)) {
