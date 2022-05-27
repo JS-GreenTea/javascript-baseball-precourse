@@ -85,11 +85,7 @@ export default class BaseballGame {
   }
 
   renderResult(playResult) {
-    if (playResult === CALL["WIN"]) {
-      this.renderWin();
-      return;
-    }
-    this.renderHint(playResult);
+    playResult === CALL["WIN"] ? this.renderWin() : this.renderHint(playResult);
   }
 
   renderWin() {
