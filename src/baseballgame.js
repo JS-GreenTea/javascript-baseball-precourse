@@ -55,15 +55,23 @@ export default class BaseballGame {
   }
 
   isPlayerInputNumberValid(playerInput) {
-    const numReg = /[\d]+/;
+    const numReg = /[1-9]+/;
 
-    if (playerInput.length !== 3) return false;
+    if (this.isCompleteLength(playerInput)) return false;
 
-    if (playerInput.match(numReg)[0].length !== 3) return false;
+    if (this.isCompleteNumber(playerInput, numReg)) return false;
 
     if (this.isDuplicateNumber(playerInput)) return false;
 
     return true;
+  }
+
+  isCompleteLength(playerInput) {
+    return playerInput.length !== 3;
+  }
+
+  isCompleteNumber(playerInput, numReg) {
+    return playerInput.match(numReg)[0].length !== 3;
   }
 
   isDuplicateNumber(playerInput) {
