@@ -7,7 +7,7 @@ export default class BaseballGame {
       document.getElementById("user-input").innerText = "";
     }
     const strikeCount = this.countStrike(computerInput, playerInput);
-    const ballCount = this.countBall(computerInput, playerInput, strikeCount);
+    const ballCount = this.countBall(computerInput, playerInput);
 
     return this.setReturnFormat(strikeCount, ballCount);
   }
@@ -64,7 +64,8 @@ export default class BaseballGame {
     return strikeCount;
   }
 
-  countBall(computerInput, playerInput, strikeCount) {
+  countBall(computerInput, playerInput) {
+    const strikeCount = this.countStrike(computerInput, playerInput);
     let ballMatchCount = 0;
     for (let i = 0; i < computerInput.length; i++) {
       if (playerInput.includes(computerInput[i])) ballMatchCount++;
