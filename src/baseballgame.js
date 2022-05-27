@@ -1,3 +1,5 @@
+import { SYS } from "./constant.js";
+
 export default class BaseballGame {
   play(computerInput, playerInput) {
     if (!this.isPlayerInputNumberValid(playerInput)) {
@@ -93,6 +95,6 @@ export default class BaseballGame {
   }
 
   alertErrorMessage() {
-    window.alert("유효하지 않은 입력입니다.");
+    window.alert(SYS["INVALID_INPUT"]);
   }
 }
