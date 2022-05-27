@@ -11,7 +11,6 @@ document.getElementById("game-restart-button").style.display = "none";
 const onClick = (e) => {
   e.preventDefault();
   player.getNumberByInputTag();
-  console.log(computer.number, player.number);
   baseballGame.decideResult(baseballGame.play(computer.number, player.number));
 };
 
