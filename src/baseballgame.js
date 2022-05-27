@@ -1,4 +1,4 @@
-import { SYS } from "./constant.js";
+import { SYS, CALL } from "./constant.js";
 
 export default class BaseballGame {
   play(computerInput, playerInput) {
@@ -29,16 +29,16 @@ export default class BaseballGame {
   }
 
   setReturnFormat(strikeCount, ballCount) {
-    if (strikeCount === 3) return "승리";
+    if (strikeCount === 3) return CALL["WIN"];
     if (strikeCount > 0 && ballCount > 0)
-      return `${ballCount}볼 ${strikeCount}스트라이크`;
-    if (strikeCount > 0 && ballCount === 0) return `${strikeCount}스트라이크`;
-    if (strikeCount === 0 && ballCount > 0) return `${ballCount}볼`;
-    if (strikeCount === 0 && ballCount === 0) return "낫싱";
+      return ballCount + CALL["BALL"] + " " + strikeCount + CALL["STRIKE"];
+    if (strikeCount > 0 && ballCount === 0) return strikeCount + CALL["STRIKE"];
+    if (strikeCount === 0 && ballCount > 0) return ballCount + CALL["BALL"];
+    if (strikeCount === 0 && ballCount === 0) return CALL["NOTHING"];
   }
 
   decideResult(returnFormat) {
-    if (returnFormat === "승리") {
+    if (returnFormat === CALL["WIN"]) {
       document.getElementById("game-restart-button").style.display = "block";
       this.printWin();
       return;
@@ -51,7 +51,7 @@ export default class BaseballGame {
   }
 
   printWin() {
-    document.getElementById("result").innerText = " 정답을 맞추셨습니다 ~ ㅊㅊ";
+    document.getElementById("result").innerText = SYS["WIN_MESSAGE"];
   }
 
   isPlayerInputNumberValid(playerInput) {
