@@ -1,4 +1,4 @@
-import { SYS, CALL } from "./constant.js";
+import { SYS, CALL, LENGTH } from "./constant.js";
 
 export default class BaseballGame {
   play(computerInput, playerInput) {
@@ -21,11 +21,11 @@ export default class BaseballGame {
   }
 
   isCompleteLength(playerInput) {
-    return playerInput.length !== 3;
+    return playerInput.length !== LENGTH;
   }
 
   isCompleteNumber(playerInput, numReg) {
-    return playerInput.match(numReg)[0].length !== 3;
+    return playerInput.match(numReg)[0].length !== LENGTH;
   }
 
   isDuplicateNumber(playerInput) {
@@ -73,7 +73,7 @@ export default class BaseballGame {
   }
 
   setReturnFormat(strikeCount, ballCount) {
-    if (strikeCount === 3) return CALL["WIN"];
+    if (strikeCount === LENGTH) return CALL["WIN"];
     if (strikeCount > 0 && ballCount > 0)
       return ballCount + CALL["BALL"] + " " + strikeCount + CALL["STRIKE"];
     if (strikeCount > 0 && ballCount === 0) return strikeCount + CALL["STRIKE"];
