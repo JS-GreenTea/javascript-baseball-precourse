@@ -6,19 +6,10 @@ export default class BaseballGame {
       this.alertErrorMessage();
       document.getElementById("user-input").innerText = "";
     }
-
-    const [strikeCount, ballCount] = this.makeCompareResult(
-      computerInput,
-      playerInput
-    );
-
-    return this.setReturnFormat(strikeCount, ballCount);
-  }
-
-  makeCompareResult(computerInput, playerInput) {
     const strikeCount = this.countStrike(computerInput, playerInput);
     const ballCount = this.countBall(computerInput, playerInput, strikeCount);
-    return [strikeCount, ballCount];
+
+    return this.setReturnFormat(strikeCount, ballCount);
   }
 
   countBall(computerInput, playerInput, strikeCount) {
