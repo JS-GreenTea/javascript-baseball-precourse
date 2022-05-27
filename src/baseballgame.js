@@ -86,7 +86,6 @@ export default class BaseballGame {
 
   renderResult(playResult) {
     if (playResult === CALL["WIN"]) {
-      document.getElementById("game-restart-button").style.display = "block";
       this.renderWin();
       return;
     }
@@ -94,6 +93,7 @@ export default class BaseballGame {
   }
 
   renderWin() {
+    document.getElementById("game-restart-button").style.display = "block";
     document.getElementById("result").innerText = SYS["WIN_MESSAGE"];
   }
 
