@@ -6,10 +6,10 @@ export default class BaseballGame {
       this.alertErrorMessage();
       document.getElementById("user-input").innerText = "";
     }
-    const strikeCount = this.countStrike(computerInput, playerInput);
-    const ballCount = this.countBall(computerInput, playerInput);
-
-    return this.setReturnFormat(strikeCount, ballCount);
+    return this.setReturnFormat(
+      this.countStrike(computerInput, playerInput),
+      this.countBall(computerInput, playerInput)
+    );
   }
 
   isPlayerInputNumberValid(playerInput) {
