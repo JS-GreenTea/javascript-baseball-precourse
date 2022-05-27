@@ -2,10 +2,7 @@ import { SYS, CALL, LENGTH } from "./constant.js";
 
 export default class BaseballGame {
   play(computerInput, playerInput) {
-    if (!this.isPlayerInputNumberValid(playerInput)) {
-      this.alertErrorMessage();
-      document.getElementById("user-input").innerText = "";
-    }
+    if (!this.isPlayerInputNumberValid(playerInput)) this.handleVaildError();
     return this.setReturnFormat(
       this.countStrike(computerInput, playerInput),
       this.countBall(computerInput, playerInput)
@@ -18,6 +15,11 @@ export default class BaseballGame {
     if (this.isCompleteNumber(playerInput, numReg)) return false;
     if (this.isDuplicateNumber(playerInput)) return false;
     return true;
+  }
+
+  handleVaildError() {
+    this.alertErrorMessage();
+    document.getElementById("user-input").innerText = "";
   }
 
   isCompleteLength(playerInput) {
