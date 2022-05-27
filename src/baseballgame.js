@@ -3,7 +3,7 @@ import { SYS, CALL, LENGTH } from "./constant.js";
 export default class BaseballGame {
   play(computerInput, playerInput) {
     if (!this.isPlayerInputNumberValid(playerInput)) this.handleVaildError();
-    return this.setReturnFormat(
+    return this.playResultByCount(
       this.countStrike(computerInput, playerInput),
       this.countBall(computerInput, playerInput)
     );
@@ -75,7 +75,7 @@ export default class BaseballGame {
     return ballMatchCount - strikeCount;
   }
 
-  setReturnFormat(strikeCount, ballCount) {
+  playResultByCount(strikeCount, ballCount) {
     if (strikeCount === LENGTH) return CALL["WIN"];
     if (strikeCount > 0 && ballCount > 0)
       return ballCount + CALL["BALL"] + " " + strikeCount + CALL["STRIKE"];
@@ -84,13 +84,13 @@ export default class BaseballGame {
     if (strikeCount === 0 && ballCount === 0) return CALL["NOTHING"];
   }
 
-  decideResult(returnFormat) {
-    if (returnFormat === CALL["WIN"]) {
+  renderResult(playResult) {
+    if (playResult === CALL["WIN"]) {
       document.getElementById("game-restart-button").style.display = "block";
       this.printWin();
       return;
     }
-    this.printHint(returnFormat);
+    this.printHint(playResult);
   }
 
   printWin() {
