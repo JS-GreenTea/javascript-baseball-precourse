@@ -1,3 +1,5 @@
+import { RANGE, LENGTH } from "./constant.js";
+
 export default class Computer {
   constructor() {
     this.number = this.generateRandomNumber();
@@ -5,8 +7,8 @@ export default class Computer {
 
   generateRandomNumber() {
     const generateNumbers = [];
-    while (generateNumbers.length !== 3) {
-      const randomNumber = this.pickNumberInRange(1, 9);
+    while (generateNumbers.length !== LENGTH) {
+      const randomNumber = this.pickNumberInRange(RANGE["MIN"], RANGE["MAX"]);
       if (!generateNumbers.includes(randomNumber))
         generateNumbers.push(randomNumber);
     }
