@@ -75,20 +75,27 @@ export default class BaseballGame {
   }
 
   isDuplicateNumber(playerInput) {
-    const duplicateCountTable = [];
-    for (let i = 0; i < 11; i++) {
-      duplicateCountTable.push(0);
+    const countTable = this.countTableFor(playerInput);
+    for (let i = 0; i < countTable.length; i++) {
+      if (countTable[i] >= 2) return true;
     }
-
-    for (let i = 0; i < playerInput.length; i++) {
-      duplicateCountTable[playerInput[i]]++;
-    }
-
-    for (let i = 0; i < duplicateCountTable.length; i++) {
-      if (duplicateCountTable[i] >= 2) return true;
-    }
-
     return false;
+  }
+
+  initCountTable() {
+    const result = [];
+    for (let i = 0; i < 11; i++) {
+      result.push(0);
+    }
+    return result;
+  }
+
+  countTableFor(playerInput) {
+    const result = this.initCountTable();
+    for (let i = 0; i < playerInput.length; i++) {
+      result[playerInput[i]]++;
+    }
+    return result;
   }
 
   alertErrorMessage() {
