@@ -4,7 +4,6 @@ export default class Player {
   }
 
   getNumberByInputTag() {
-    const userInput = document.getElementById("user-input");
-    this.number = userInput.value;
+    this.number = document.getElementById("user-input").value;
   }
 }
