@@ -12,12 +12,48 @@ export default class BaseballGame {
     return this.setReturnFormat(strikeCount, ballCount);
   }
 
-  countBall(computerInput, playerInput, strikeCount) {
-    let ballMatchCount = 0;
-    for (let i = 0; i < computerInput.length; i++) {
-      if (playerInput.includes(computerInput[i])) ballMatchCount++;
+  isPlayerInputNumberValid(playerInput) {
+    const numReg = /[1-9]+/;
+    if (this.isCompleteLength(playerInput)) return false;
+    if (this.isCompleteNumber(playerInput, numReg)) return false;
+    if (this.isDuplicateNumber(playerInput)) return false;
+    return true;
+  }
+
+  isCompleteLength(playerInput) {
+    return playerInput.length !== 3;
+  }
+
+  isCompleteNumber(playerInput, numReg) {
+    return playerInput.match(numReg)[0].length !== 3;
+  }
+
+  isDuplicateNumber(playerInput) {
+    const countTable = this.countTableFor(playerInput);
+    for (let i = 0; i < countTable.length; i++) {
+      if (countTable[i] >= 2) return true;
     }
-    return ballMatchCount - strikeCount;
+    return false;
+  }
+
+  countTableFor(playerInput) {
+    const result = this.initCountTable();
+    for (let i = 0; i < playerInput.length; i++) {
+      result[playerInput[i]]++;
+    }
+    return result;
+  }
+
+  initCountTable() {
+    const result = [];
+    for (let i = 0; i < 11; i++) {
+      result.push(0);
+    }
+    return result;
+  }
+
+  alertErrorMessage() {
+    window.alert(SYS["INVALID_INPUT"]);
   }
 
   countStrike(computerInput, playerInput) {
@@ -26,6 +62,14 @@ export default class BaseballGame {
       if (computerInput[i] === playerInput[i]) strikeCount++;
     }
     return strikeCount;
+  }
+
+  countBall(computerInput, playerInput, strikeCount) {
+    let ballMatchCount = 0;
+    for (let i = 0; i < computerInput.length; i++) {
+      if (playerInput.includes(computerInput[i])) ballMatchCount++;
+    }
+    return ballMatchCount - strikeCount;
   }
 
   setReturnFormat(strikeCount, ballCount) {
@@ -46,59 +90,11 @@ export default class BaseballGame {
     this.printHint(returnFormat);
   }
 
-  printHint(returnFormat) {
-    document.getElementById("result").innerText = returnFormat;
-  }
-
   printWin() {
     document.getElementById("result").innerText = SYS["WIN_MESSAGE"];
   }
 
-  isPlayerInputNumberValid(playerInput) {
-    const numReg = /[1-9]+/;
-
-    if (this.isCompleteLength(playerInput)) return false;
-
-    if (this.isCompleteNumber(playerInput, numReg)) return false;
-
-    if (this.isDuplicateNumber(playerInput)) return false;
-
-    return true;
-  }
-
-  isCompleteLength(playerInput) {
-    return playerInput.length !== 3;
-  }
-
-  isCompleteNumber(playerInput, numReg) {
-    return playerInput.match(numReg)[0].length !== 3;
-  }
-
-  isDuplicateNumber(playerInput) {
-    const countTable = this.countTableFor(playerInput);
-    for (let i = 0; i < countTable.length; i++) {
-      if (countTable[i] >= 2) return true;
-    }
-    return false;
-  }
-
-  initCountTable() {
-    const result = [];
-    for (let i = 0; i < 11; i++) {
-      result.push(0);
-    }
-    return result;
-  }
-
-  countTableFor(playerInput) {
-    const result = this.initCountTable();
-    for (let i = 0; i < playerInput.length; i++) {
-      result[playerInput[i]]++;
-    }
-    return result;
-  }
-
-  alertErrorMessage() {
-    window.alert(SYS["INVALID_INPUT"]);
+  printHint(returnFormat) {
+    document.getElementById("result").innerText = returnFormat;
   }
 }
