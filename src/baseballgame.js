@@ -1,45 +1,38 @@
 export default class BaseballGame {
-  play(computerInputNumber, playerInputNumber) {
-    if (!this.isPlayerInputNumberValid(playerInputNumber)) {
+  play(computerInput, playerInput) {
+    if (!this.isPlayerInputNumberValid(playerInput)) {
       this.alertErrorMessage();
       document.getElementById("user-input").innerText = "";
     }
 
     const [strikeCount, ballCount] = this.makeCompareResult(
-      computerInputNumber,
-      playerInputNumber
+      computerInput,
+      playerInput
     );
 
     return this.setReturnFormat(strikeCount, ballCount);
   }
 
-  makeCompareResult(computerInputNumber, playerInputNumber) {
-    const strikeCount = this.countStrike(
-      computerInputNumber,
-      playerInputNumber
-    );
-    const ballCount = this.countBall(
-      computerInputNumber,
-      playerInputNumber,
-      strikeCount
-    );
+  makeCompareResult(computerInput, playerInput) {
+    const strikeCount = this.countStrike(computerInput, playerInput);
+    const ballCount = this.countBall(computerInput, playerInput, strikeCount);
     return [strikeCount, ballCount];
   }
 
-  countBall(computerInputNumber, playerInputNumber, strikeCount) {
+  countBall(computerInput, playerInput, strikeCount) {
     let ballMatchCount = 0;
 
-    for (let i = 0; i < computerInputNumber.length; i++) {
-      if (playerInputNumber.includes(computerInputNumber[i])) ballMatchCount++;
+    for (let i = 0; i < computerInput.length; i++) {
+      if (playerInput.includes(computerInput[i])) ballMatchCount++;
     }
     let ballCount = ballMatchCount - strikeCount;
     return ballCount;
   }
 
-  countStrike(computerInputNumber, playerInputNumber) {
+  countStrike(computerInput, playerInput) {
     let strikeCount = 0;
-    for (let i = 0; i < computerInputNumber.length; i++) {
-      if (computerInputNumber[i] === playerInputNumber[i]) strikeCount++;
+    for (let i = 0; i < computerInput.length; i++) {
+      if (computerInput[i] === playerInput[i]) strikeCount++;
     }
     return strikeCount;
   }
@@ -70,26 +63,26 @@ export default class BaseballGame {
     document.getElementById("result").innerText = " 정답을 맞추셨습니다 ~ ㅊㅊ";
   }
 
-  isPlayerInputNumberValid(playerInputNumber) {
+  isPlayerInputNumberValid(playerInput) {
     const numReg = /[\d]+/;
 
-    if (playerInputNumber.length !== 3) return false;
+    if (playerInput.length !== 3) return false;
 
-    if (playerInputNumber.match(numReg)[0].length !== 3) return false;
+    if (playerInput.match(numReg)[0].length !== 3) return false;
 
-    if (this.isDuplicateNumber(playerInputNumber)) return false;
+    if (this.isDuplicateNumber(playerInput)) return false;
 
     return true;
   }
 
-  isDuplicateNumber(playerInputNumber) {
+  isDuplicateNumber(playerInput) {
     const duplicateCountTable = [];
     for (let i = 0; i < 11; i++) {
       duplicateCountTable.push(0);
     }
 
-    for (let i = 0; i < playerInputNumber.length; i++) {
-      duplicateCountTable[playerInputNumber[i]]++;
+    for (let i = 0; i < playerInput.length; i++) {
+      duplicateCountTable[playerInput[i]]++;
     }
 
     for (let i = 0; i < duplicateCountTable.length; i++) {
