@@ -13,6 +13,7 @@ const restartButton = document.getElementById('game-restart-button');
 const init = () => {
   resultMessage.style.display = 'none';
   restartButton.style.display = 'none';
+  activateSubmitButton();
 };
 
 const activateSubmitButton = () => {
