@@ -18,13 +18,15 @@ const init = () => {
   randomNumnber = Random.pickUniqueNumbersInRange(1, 9, 3);
 };
 
+const submitButtonClickHandler = event => {
+  if (!validateNumber()) {
+    userInput.value = '';
+    userInput.focus();
+  }
+};
+
 const activateSubmitButton = () => {
-  submitButton.addEventListener('click', event => {
-    if (!validateNumber()) {
-      userInput.value = '';
-      userInput.focus();
-    }
-  });
+  submitButton.addEventListener('click', submitButtonClickHandler);
 };
 
 restartButton.addEventListener('click', event => {
