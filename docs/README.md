@@ -18,7 +18,7 @@
   - [x] strike인지 확인한다.
   - [x] ball인지 확인한다.
   - [x] ballState를 string으로 반환한다.
-  - [ ] play 시 결과값을 render 한다.
-    - [ ] 이겼을 때 render한다.
-    - [ ] 졌을 때 render한다.
+  - [x] play 시 결과값을 render 한다.
+    - [x] 이겼을 때 render한다.
+    - [x] 졌을 때 render한다.
   - [ ] 이겼을 때 재시작 버튼을 누르기 전까지 확인버튼을 비활성화한다.

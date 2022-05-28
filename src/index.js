@@ -12,7 +12,7 @@ const restartButton = document.getElementById('game-restart-button');
 let randerNumber = [];
 
 const init = () => {
-  resultMessage.style.display = 'none';
+  resultMessage.innerText = '';
   restartButton.style.display = 'none';
   activateSubmitButton();
   randomNumnber = Random.pickUniqueNumbersInRange(1, 9, 3);
@@ -26,5 +26,9 @@ const activateSubmitButton = () => {
     }
   });
 };
+
+restartButton.addEventListener('click', event => {
+  init();
+});
 
 init();

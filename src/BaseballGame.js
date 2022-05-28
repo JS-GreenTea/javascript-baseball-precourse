@@ -17,6 +17,7 @@ class BaseballGame {
       }
       this.#ballState.addNothing();
     }
+    this.announceBallState();
   }
 
   isWin() {
@@ -37,6 +38,17 @@ class BaseballGame {
     if (this.#ballState.strike) result += `${this.#ballState.strike}스트라이크`;
     if (this.#ballState.nothing === 3) result = '낫싱';
     return result;
+  }
+
+  announceBallState() {
+    if (this.isWin()) {
+      resultMessage.innerText =
+        '<strong>🎉정답을 맞추셨습니다🎉</strong><br>' +
+        '게임을 다시 시작하겠습니까?';
+      resultMessage.style.display = 'block';
+    } else {
+      resultMessage.innerText = this.ballStateToString();
+    }
   }
 }
 
