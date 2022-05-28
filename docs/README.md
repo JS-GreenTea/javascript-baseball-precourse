@@ -17,7 +17,7 @@
   - [ ] play 마다 이겼는지 확인한다.
   - [x] strike인지 확인한다.
   - [x] ball인지 확인한다.
-  - [ ] ballState를 string으로 반환한다.
+  - [x] ballState를 string으로 반환한다.
   - [ ] play 시 결과값을 render 한다.
     - [ ] 이겼을 때 render한다.
     - [ ] 졌을 때 render한다.
