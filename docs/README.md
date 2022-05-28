@@ -7,7 +7,7 @@
 - [x] 확인 버튼을 활성화한다.
 
 
-- [ ] ball의 상태를 관리하는 BallState 클래스를 만든다.
+- [x] ball의 상태를 관리하는 BallState 클래스를 만든다.
   - [ ] strike, ball, nothing에 각각 +1을 한다.
   - [ ] 각 프로퍼티의 합을 반환한다.
 
