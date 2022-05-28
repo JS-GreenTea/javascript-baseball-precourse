@@ -9,11 +9,13 @@ const submitButton = document.getElementById('submit');
 const userInput = document.getElementById('user-input');
 const resultMessage = document.getElementById('result');
 const restartButton = document.getElementById('game-restart-button');
+let randerNumber = [];
 
 const init = () => {
   resultMessage.style.display = 'none';
   restartButton.style.display = 'none';
   activateSubmitButton();
+  randomNumnber = Random.pickUniqueNumbersInRange(1, 9, 3);
 };
 
 const activateSubmitButton = () => {
@@ -24,5 +26,4 @@ const activateSubmitButton = () => {
     }
   });
 };
-
 init();
