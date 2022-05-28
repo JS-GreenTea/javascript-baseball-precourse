@@ -20,4 +20,16 @@ class BallState {
   get nothing() {
     return this.#nothing;
   }
+
+  addStrike() {
+    this.#strike += 1;
+  }
+
+  addBall() {
+    this.#ball += 1;
+  }
+
+  addNothing() {
+    this.#nothing += 1;
+  }
 }
