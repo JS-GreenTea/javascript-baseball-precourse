@@ -23,6 +23,7 @@ class BaseballGame {
     if (this.isWin()) {
       submitButton.removeEventListener('click', submitButtonClickHandler);
     }
+    return this.ballStateToString();
   }
 
   isWin() {
