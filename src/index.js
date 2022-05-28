@@ -15,11 +15,13 @@ const init = () => {
   restartButton.style.display = 'none';
 };
 
-submitButton.addEventListener('click', event => {
-  if (!validateNumber()) {
-    userInput.value = '';
-    userInput.focus();
-  }
-});
+const activateSubmitButton = () => {
+  submitButton.addEventListener('click', event => {
+    if (!validateNumber()) {
+      userInput.value = '';
+      userInput.focus();
+    }
+  });
+};
 
 init();
