@@ -9,7 +9,7 @@
 
 - [x] ball의 상태를 관리하는 BallState 클래스를 만든다.
   - [x] strike, ball, nothing에 각각 +1을 한다.
-  - [ ] 각 프로퍼티의 합을 반환한다.
+  - [x] 각 프로퍼티의 합을 반환한다.
 
 
 - [ ] game을 진행하는 BaseballGame 클래스를 만든다.

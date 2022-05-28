@@ -32,4 +32,8 @@ class BallState {
   addNothing() {
     this.#nothing += 1;
   }
+
+  getAllBallCount() {
+    return this.#strike + this.#ball + this.#nothing;
+  }
 }
