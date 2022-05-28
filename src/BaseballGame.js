@@ -3,6 +3,21 @@ class BaseballGame {
   constructor() {
     this.#ballState = new BallState();
   }
+  play(computerInputNumbers, userInputNumbers) {
+    computerInputNumbers = String(computerInputNumbers);
+    userInputNumbers = String(userInputNumbers);
+    for (let i = 0; i < computerInputNumbers.length; i++) {
+      if (this.isStrike(computerInputNumbers[i], userInputNumbers[i])) {
+        this.#ballState.addStrike();
+        continue;
+      }
+      if (this.isBall(computerInputNumbers, userInputNumbers[i])) {
+        this.#ballState.addBall();
+        continue;
+      }
+      this.#ballState.addNothing();
+    }
+  }
 
   isStrike(computerInputNumber, userInputNumber) {
     return computerInputNumber === userInputNumber;
