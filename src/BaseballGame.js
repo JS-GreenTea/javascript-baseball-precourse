@@ -1,4 +1,4 @@
-import BallState from './ballState';
+import BallState from './ballState.js';
 
 class BaseballGame {
   #ballState;

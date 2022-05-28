@@ -1,3 +1,7 @@
+import BaseballGame from './BaseballGame.js';
+
+const baseballGame = new BaseballGame();
+
 const validateNumber = userInput => {
   if (typeof userInput !== 'number') {
     alert('잘못된 값을 입력하셨습니다.');
