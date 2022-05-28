@@ -19,7 +19,7 @@ const init = () => {
   resultMessage.innerText = '';
   restartButton.style.display = 'none';
   activateSubmitButton();
-  randomNumber = Random.pickUniqueNumbersInRange(1, 9, 3);
+  randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
 };
 
 const submitButtonClickHandler = event => {
