@@ -19,6 +19,10 @@ class BaseballGame {
     }
   }
 
+  isWin() {
+    return this.#ballState.strike === 3;
+  }
+
   isStrike(computerInputNumber, userInputNumber) {
     return computerInputNumber === userInputNumber;
   }
