@@ -15,7 +15,7 @@
 - [x] game을 진행하는 BaseballGame 클래스를 만든다.
   - [ ] 컴퓨터 입력과 사용자 입력을 받아 게임을 진행한다.
   - [ ] play 마다 이겼는지 확인한다.
-  - [ ] strike인지 확인한다.
+  - [x] strike인지 확인한다.
   - [ ] ball인지 확인한다.
   - [ ] ballState를 string으로 반환한다.
   - [ ] play 시 결과값을 render 한다.
