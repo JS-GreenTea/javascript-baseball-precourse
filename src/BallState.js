@@ -37,3 +37,5 @@ class BallState {
     return this.#strike + this.#ball + this.#nothing;
   }
 }
+
+export default BallState;
