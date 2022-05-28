@@ -27,6 +27,7 @@ const submitButtonClickHandler = event => {
     userInput.value = '';
     userInput.focus();
   }
+  baseballGame.play(randomNumber.join(), userInput.value);
 };
 
 const activateSubmitButton = () => {
