@@ -1,4 +1,5 @@
-import { SYS, CALL, LENGTH } from "./constant.js";
+/* eslint-disable no-undef */
+import { SYS, CALL, LENGTH } from './constant.js';
 
 export default class BaseballGame {
   play(computerInput, playerInput) {
@@ -19,7 +20,7 @@ export default class BaseballGame {
 
   handleVaildError() {
     this.alertErrorMessage();
-    document.getElementById("user-input").innerText = "";
+    document.getElementById('user-input').innerText = '';
   }
 
   isCompleteLength(playerInput) {
@@ -32,7 +33,7 @@ export default class BaseballGame {
 
   isDuplicateNumber(playerInput) {
     const countTable = this.countTableFor(playerInput);
-    for (let i = 0; i < countTable.length; i++) {
+    for (let i = 0; i < countTable.length; i += 1) {
       if (countTable[i] >= 2) return true;
     }
     return false;
@@ -40,28 +41,28 @@ export default class BaseballGame {
 
   countTableFor(playerInput) {
     const result = this.initCountTable();
-    for (let i = 0; i < playerInput.length; i++) {
-      result[playerInput[i]]++;
+    for (let i = 0; i < playerInput.length; i += 1) {
+      result[playerInput[i]] += 1;
     }
     return result;
   }
 
   initCountTable() {
     const result = [];
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 11; i += 1) {
       result.push(0);
     }
     return result;
   }
 
   alertErrorMessage() {
-    window.alert(SYS["INVALID_INPUT"]);
+    window.alert(SYS['INVALID_INPUT']);
   }
 
   countStrike(computerInput, playerInput) {
     let strikeCount = 0;
-    for (let i = 0; i < computerInput.length; i++) {
-      if (computerInput[i] === playerInput[i]) strikeCount++;
+    for (let i = 0; i < computerInput.length; i += 1) {
+      if (computerInput[i] === playerInput[i]) strikeCount += 1;
     }
     return strikeCount;
   }
@@ -69,31 +70,31 @@ export default class BaseballGame {
   countBall(computerInput, playerInput) {
     const strikeCount = this.countStrike(computerInput, playerInput);
     let ballMatchCount = 0;
-    for (let i = 0; i < computerInput.length; i++) {
-      if (playerInput.includes(computerInput[i])) ballMatchCount++;
+    for (let i = 0; i < computerInput.length; i += 1) {
+      if (playerInput.includes(computerInput[i])) ballMatchCount += 1;
     }
     return ballMatchCount - strikeCount;
   }
 
   playResultByCount(strikeCount, ballCount) {
-    if (strikeCount === LENGTH) return CALL["WIN"];
+    if (strikeCount === LENGTH) return CALL['WIN'];
     if (strikeCount > 0 && ballCount > 0)
-      return ballCount + CALL["BALL"] + " " + strikeCount + CALL["STRIKE"];
-    if (strikeCount > 0 && ballCount === 0) return strikeCount + CALL["STRIKE"];
-    if (strikeCount === 0 && ballCount > 0) return ballCount + CALL["BALL"];
-    if (strikeCount === 0 && ballCount === 0) return CALL["NOTHING"];
+      return ballCount + CALL['BALL'] + ' ' + strikeCount + CALL['STRIKE'];
+    if (strikeCount > 0 && ballCount === 0) return strikeCount + CALL['STRIKE'];
+    if (strikeCount === 0 && ballCount > 0) return ballCount + CALL['BALL'];
+    if (strikeCount === 0 && ballCount === 0) return CALL['NOTHING'];
   }
 
   renderResult(playResult) {
-    playResult === CALL["WIN"] ? this.renderWin() : this.renderHint(playResult);
+    playResult === CALL['WIN'] ? this.renderWin() : this.renderHint(playResult);
   }
 
   renderWin() {
-    document.getElementById("game-restart-button").style.display = "block";
-    document.getElementById("result").innerText = SYS["WIN_MESSAGE"];
+    document.getElementById('game-restart-button').style.display = 'block';
+    document.getElementById('result').innerText = SYS['WIN_MESSAGE'];
   }
 
   renderHint(returnFormat) {
-    document.getElementById("result").innerText = returnFormat;
+    document.getElementById('result').innerText = returnFormat;
   }
 }
