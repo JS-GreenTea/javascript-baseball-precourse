@@ -1,4 +1,4 @@
-import { HINT, EMPTY_STR } from './constants.mjs';
+import { HINT, STRING } from './constants.mjs';
 
 const pickComputerInputNumbers = () => {
   /* global MissionUtils */
@@ -14,8 +14,8 @@ const pickComputerInputNumbers = () => {
 };
 
 const joinHint = (ball, strike) => {
-  const ballStr = ball ? `${ball}${HINT.BALL}` : `${EMPTY_STR}`;
-  const strikeStr = strike ? `${strike}${HINT.STRIKE}` : `${EMPTY_STR}`;
+  const ballStr = ball ? `${ball}${HINT.BALL}` : `${STRING.EMPTY}`;
+  const strikeStr = strike ? `${strike}${HINT.STRIKE}` : `${STRING.EMPTY}`;
 
   return ballStr + strikeStr;
 };

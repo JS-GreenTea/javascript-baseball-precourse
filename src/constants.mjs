@@ -22,6 +22,9 @@ const ALERT_MESSAGE = {
   NAN: '숫자만 입력해주세요.',
 };
 
-const EMPTY_STR = '';
+const STRING = {
+  EMPTY: '',
+  NEW_LINE: '\n',
+};
 
-export { DOM_ID, HINT, EMPTY_STR, RESTART_TEMPLATE, ALERT_MESSAGE };
+export { DOM_ID, HINT, RESTART_TEMPLATE, ALERT_MESSAGE, STRING };

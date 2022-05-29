@@ -1,4 +1,4 @@
-import { DOM_ID, HINT, EMPTY_STR, RESTART_TEMPLATE } from '../constants.mjs';
+import { DOM_ID, HINT, RESTART_TEMPLATE, STRING } from '../constants.mjs';
 import { pickComputerInputNumbers, joinHint } from '../utils.mjs';
 import { validateUserInput } from './validator.mjs';
 
@@ -20,7 +20,7 @@ export default class BaseballGame {
     const validateResult = validateUserInput(userInputNumbers);
 
     if (validateResult.isError) {
-      alert(validateResult.message.join('\n'));
+      alert(validateResult.message.join(STRING.NEW_LINE));
       this.initInputView();
       return;
     }
@@ -37,12 +37,12 @@ export default class BaseballGame {
   }
 
   initInputView() {
-    this.inputView.value = EMPTY_STR;
+    this.inputView.value = STRING.EMPTY;
     this.inputView.focus();
   }
 
   initResultView() {
-    this.resultView.innerHTML = EMPTY_STR;
+    this.resultView.innerHTML = STRING.EMPTY;
   }
 
   play(computerInputNumbers, userInputNumbers) {
@@ -50,8 +50,8 @@ export default class BaseballGame {
       return HINT.CORRECT;
     }
 
-    let strike = 0;
     let ball = 0;
+    let strike = 0;
 
     for (let i = 0; i < computerInputNumbers.length; i += 1) {
       if (computerInputNumbers[i] === userInputNumbers[i]) {
