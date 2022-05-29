@@ -56,7 +56,7 @@ export default class BaseballGame {
   }
 
   alertErrorMessage() {
-    window.alert(SYS['INVALID_INPUT']);
+    window.alert(SYS.INVALID_INPUT);
   }
 
   countStrike(computerInput, playerInput) {
@@ -77,21 +77,21 @@ export default class BaseballGame {
   }
 
   playResultByCount(strikeCount, ballCount) {
-    if (strikeCount === LENGTH) return CALL['WIN'];
+    if (strikeCount === LENGTH) return CALL.WIN;
     if (strikeCount > 0 && ballCount > 0)
-      return ballCount + CALL['BALL'] + ' ' + strikeCount + CALL['STRIKE'];
-    if (strikeCount > 0 && ballCount === 0) return strikeCount + CALL['STRIKE'];
-    if (strikeCount === 0 && ballCount > 0) return ballCount + CALL['BALL'];
-    if (strikeCount === 0 && ballCount === 0) return CALL['NOTHING'];
+      return `${ballCount}${CALL.BALL} ${strikeCount}${CALL.STRIKE}`;
+    if (strikeCount > 0 && ballCount === 0) return strikeCount + CALL.STRIKE;
+    if (strikeCount === 0 && ballCount > 0) return ballCount + CALL.BALL;
+    if (strikeCount === 0 && ballCount === 0) return CALL.NOTHING;
   }
 
   renderResult(playResult) {
-    playResult === CALL['WIN'] ? this.renderWin() : this.renderHint(playResult);
+    playResult === CALL.WIN ? this.renderWin() : this.renderHint(playResult);
   }
 
   renderWin() {
     document.getElementById('game-restart-button').style.display = 'block';
-    document.getElementById('result').innerText = SYS['WIN_MESSAGE'];
+    document.getElementById('result').innerText = SYS.WIN_MESSAGE;
   }
 
   renderHint(returnFormat) {
