@@ -1,4 +1,9 @@
-const EMPTY_STR = '';
+const DOM_ID = {
+  INPUT: 'user-input',
+  SUBMIT: 'submit',
+  RESULT: 'result',
+  RESTART: 'game-restart-button',
+};
 
 const HINT = {
   BALL: '볼',
@@ -17,4 +22,6 @@ const ALERT_MESSAGE = {
   NAN: '숫자만 입력해주세요.',
 };
 
-export { HINT, EMPTY_STR, RESTART_TEMPLATE, ALERT_MESSAGE };
+const EMPTY_STR = '';
+
+export { DOM_ID, HINT, EMPTY_STR, RESTART_TEMPLATE, ALERT_MESSAGE };
