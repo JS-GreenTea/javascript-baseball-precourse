@@ -3,9 +3,9 @@ import { pickComputerInputNumbers, joinHint } from '../utils.mjs';
 import { validateUserInput } from './validator.mjs';
 
 export default class BaseballGame {
-  constructor(input, result, submitBtn) {
-    this.input = input;
-    this.result = result;
+  constructor(inputView, resultView, submitBtn) {
+    this.inputView = inputView;
+    this.resultView = resultView;
     this.submitBtn = submitBtn;
 
     this.computerInputNumbers = pickComputerInputNumbers();

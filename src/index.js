@@ -1,7 +1,7 @@
 import BaseballGame from './domain/BaseballGame.mjs';
 
-const input = document.querySelector('#user-input');
-const result = document.querySelector('#result');
+const inputView = document.querySelector('#user-input');
+const resultView = document.querySelector('#result');
 const submitBtn = document.querySelector('#submit');
 
-new BaseballGame(input, result, submitBtn);
+new BaseballGame(inputView, resultView, submitBtn);
