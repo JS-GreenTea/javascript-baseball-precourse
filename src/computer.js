@@ -9,16 +9,12 @@ export default class Computer {
     const generateNumbers = [];
     while (generateNumbers.length !== LENGTH) {
       const randomNumber = MissionUtils.Random.pickNumberInRange(
-        RANGE['MIN'],
-        RANGE['MAX']
+        RANGE.MIN,
+        RANGE.MAX
       );
       if (!generateNumbers.includes(randomNumber))
         generateNumbers.push(randomNumber);
     }
     return generateNumbers.join('');
-  }
-
-  static pickNumberInRange(start, end) {
-    return MissionUtils.Random.pickNumberInRange(start, end);
   }
 }
