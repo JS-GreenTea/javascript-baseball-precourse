@@ -68,10 +68,10 @@ export default class BaseballGame {
     return joinHint(ballCount, strikeCount);
   }
 
-  render(resultStr) {
-    this.resultView.innerHTML = resultStr;
+  render(result) {
+    this.resultView.innerHTML = result;
 
-    if (resultStr === HINT.CORRECT) {
+    if (result === HINT.CORRECT) {
       this.resultView.innerHTML += RESTART_TEMPLATE;
     }
   }
