@@ -1,10 +1,9 @@
 import { ALERT_MESSAGE } from '../constants.mjs';
 
+const isNaN = (value) => Number.isNaN(Number(value));
+const includeSpace = (value) => !!value.match(/ /gi);
 const isDuplicated = (value) => new Set(value).size !== value.length;
 const isInvalidLength = (value) => value.length !== 3;
-const includeSpace = (value) => !!value.match(/ /gi);
-const isNaN = (value) => Number.isNaN(Number(value));
-
 const validateUserInput = (value) => {
   const message = [];
 
@@ -24,10 +23,4 @@ const validateUserInput = (value) => {
   return { isError: message.length !== 0, message };
 };
 
-export {
-  isDuplicated,
-  isInvalidLength,
-  includeSpace,
-  isNaN,
-  validateUserInput,
-};
+export default validateUserInput;

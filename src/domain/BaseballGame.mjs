@@ -1,6 +1,7 @@
 import { DOM_ID, HINT, RESTART_TEMPLATE, STRING } from '../constants.mjs';
 import { pickComputerInputNumbers, joinHint } from '../utils.mjs';
-import { validateUserInput } from './validator.mjs';
+
+import validateUserInput from './validator.mjs';
 
 export default class BaseballGame {
   constructor(inputView, resultView, submitBtn) {
