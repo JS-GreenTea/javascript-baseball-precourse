@@ -13,11 +13,13 @@ const pickComputerInputNumbers = () => {
   return Array.from(result).join('');
 };
 
-const joinHint = (ball, strike) => {
-  const ballStr = ball ? `${ball}${HINT.BALL}` : `${STRING.EMPTY}`;
-  const strikeStr = strike ? `${strike}${HINT.STRIKE}` : `${STRING.EMPTY}`;
+const joinHint = (ballCount, strikeCount) => {
+  const ballHint = ballCount ? `${ballCount}${HINT.BALL}` : `${STRING.EMPTY}`;
+  const strikeHint = strikeCount
+    ? `${strikeCount}${HINT.STRIKE}`
+    : `${STRING.EMPTY}`;
 
-  return ballStr + strikeStr;
+  return `${ballHint} ${strikeHint}`;
 };
 
 export { pickComputerInputNumbers, joinHint };

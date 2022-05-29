@@ -50,22 +50,22 @@ export default class BaseballGame {
       return HINT.CORRECT;
     }
 
-    let ball = 0;
-    let strike = 0;
+    let ballCount = 0;
+    let strikeCount = 0;
 
     for (let i = 0; i < computerInputNumbers.length; i += 1) {
       if (computerInputNumbers[i] === userInputNumbers[i]) {
-        strike += 1;
+        strikeCount += 1;
       } else if (userInputNumbers.indexOf(computerInputNumbers[i]) !== -1) {
-        ball += 1;
+        ballCount += 1;
       }
     }
 
-    if (!strike && !ball) {
+    if (!strikeCount && !ballCount) {
       return HINT.NOTHING;
     }
 
-    return joinHint(ball, strike);
+    return joinHint(ballCount, strikeCount);
   }
 
   render(resultStr) {
