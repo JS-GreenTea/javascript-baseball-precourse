@@ -1,4 +1,4 @@
-import { HINT, EMPTY_STR, RESTART_TEMPLATE } from '../constants.mjs';
+import { DOM_ID, HINT, EMPTY_STR, RESTART_TEMPLATE } from '../constants.mjs';
 import { pickComputerInputNumbers, joinHint } from '../utils.mjs';
 import { validateUserInput } from './validator.mjs';
 
@@ -7,21 +7,21 @@ export default class BaseballGame {
     this.inputView = inputView;
     this.resultView = resultView;
     this.submitBtn = submitBtn;
-
     this.computerInputNumbers = pickComputerInputNumbers();
 
     this.submitBtn.addEventListener('click', this.inputSubmitEvent.bind(this));
+    this.resultView.addEventListener('click', this.restartEvent.bind(this));
   }
 
   inputSubmitEvent(event) {
     event.preventDefault();
 
-    const userInputNumbers = this.input.value;
+    const userInputNumbers = this.inputView.value;
     const validateResult = validateUserInput(userInputNumbers);
 
     if (validateResult.isError) {
       alert(validateResult.message.join('\n'));
-      this.initInput();
+      this.initInputView();
       return;
     }
 
@@ -29,17 +29,20 @@ export default class BaseballGame {
     this.render(playResult);
   }
 
-  initInput() {
-    this.input.value = EMPTY_STR;
-    this.result.innerHTML = EMPTY_STR;
+  restartEvent(event) {
+    if (event.target.id === DOM_ID.RESTART) {
+      this.computerInputNumbers = pickComputerInputNumbers();
+      this.initInputView();
+    }
   }
 
-  bindRestartEvent() {
-    const restartBtn = document.querySelector('#game-restart-button');
-    restartBtn.addEventListener('click', () => {
-      this.computerInputNumbers = pickComputerInputNumbers();
-      this.initInput();
-    });
+  initInputView() {
+    this.inputView.value = EMPTY_STR;
+    this.inputView.focus();
+  }
+
+  initResultView() {
+    this.resultView.innerHTML = EMPTY_STR;
   }
 
   play(computerInputNumbers, userInputNumbers) {
@@ -66,11 +69,10 @@ export default class BaseballGame {
   }
 
   render(resultStr) {
-    this.result.innerHTML = resultStr;
+    this.resultView.innerHTML = resultStr;
 
     if (resultStr === HINT.CORRECT) {
-      this.result.innerHTML += RESTART_TEMPLATE;
-      this.bindRestartEvent();
+      this.resultView.innerHTML += RESTART_TEMPLATE;
     }
   }
 }
