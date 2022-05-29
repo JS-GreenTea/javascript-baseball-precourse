@@ -1,18 +1,6 @@
-import {
-  isDuplicated,
-  isInvalidLength,
-  includeSpace,
-  isNaN,
-} from './validator.mjs';
-import {
-  HINT,
-  EMPTY_STR,
-  RESTART_TEMPLATE,
-  ALERT_MESSAGE,
-} from '../constants.mjs';
-
-/* global MissionUtils */
-const { pickNumberInRange } = MissionUtils.Random;
+import { HINT, EMPTY_STR, RESTART_TEMPLATE } from '../constants.mjs';
+import { pickComputerInputNumbers, joinHint } from '../utils.mjs';
+import { validateUserInput } from './validator.mjs';
 
 export default class BaseballGame {
   constructor(input, result, submitBtn) {
@@ -20,49 +8,25 @@ export default class BaseballGame {
     this.result = result;
     this.submitBtn = submitBtn;
 
-    this.computerInputNumbers = this.getComputerInputNumbers();
+    this.computerInputNumbers = pickComputerInputNumbers();
 
-    this.submitBtn.addEventListener('click', (event) => {
-      this.bindSubmitEvent(event);
-    });
+    this.submitBtn.addEventListener('click', this.inputSubmitEvent.bind(this));
   }
 
-  bindSubmitEvent(event) {
+  inputSubmitEvent(event) {
     event.preventDefault();
 
     const userInputNumbers = this.input.value;
+    const validateResult = validateUserInput(userInputNumbers);
 
-    if (!this.validateInput(userInputNumbers)) {
+    if (validateResult.isError) {
+      alert(validateResult.message.join('\n'));
       this.initInput();
       return;
     }
 
     const playResult = this.play(this.computerInputNumbers, userInputNumbers);
-
     this.render(playResult);
-  }
-
-  validateInput(inputNumbers) {
-    const message = [];
-
-    if (isNaN(inputNumbers)) {
-      message.push(ALERT_MESSAGE.NAN);
-    }
-    if (includeSpace(inputNumbers)) {
-      message.push(ALERT_MESSAGE.SPACE);
-    }
-    if (isDuplicated(inputNumbers)) {
-      message.push(ALERT_MESSAGE.DUPLICATE);
-    }
-    if (isInvalidLength(inputNumbers)) {
-      message.push(ALERT_MESSAGE.INVALID_LENGTH);
-    }
-
-    if (message.length > 0) {
-      alert(message.join('\n'));
-    }
-
-    return message.length === 0;
   }
 
   initInput() {
@@ -73,20 +37,9 @@ export default class BaseballGame {
   bindRestartEvent() {
     const restartBtn = document.querySelector('#game-restart-button');
     restartBtn.addEventListener('click', () => {
-      this.computerInputNumbers = this.getComputerInputNumbers();
+      this.computerInputNumbers = pickComputerInputNumbers();
       this.initInput();
     });
-  }
-
-  getComputerInputNumbers() {
-    const result = new Set();
-
-    while (result.size < 3) {
-      const pickedNumber = pickNumberInRange(1, 9);
-      result.add(pickedNumber.toString());
-    }
-
-    return Array.from(result).join('');
   }
 
   play(computerInputNumbers, userInputNumbers) {
@@ -109,10 +62,7 @@ export default class BaseballGame {
       return HINT.NOTHING;
     }
 
-    const ballStr = ball ? `${ball}${HINT.BALL}` : `${EMPTY_STR}`;
-    const strikeStr = strike ? `${strike}${HINT.STRIKE}` : `${EMPTY_STR}`;
-
-    return ballStr + strikeStr;
+    return joinHint(ball, strike);
   }
 
   render(resultStr) {
