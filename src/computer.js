@@ -1,4 +1,4 @@
-import { RANGE, LENGTH } from "./constant.js";
+import { RANGE, LENGTH } from './constant.js';
 
 export default class Computer {
   constructor() {
@@ -8,14 +8,17 @@ export default class Computer {
   generateRandomNumber() {
     const generateNumbers = [];
     while (generateNumbers.length !== LENGTH) {
-      const randomNumber = this.pickNumberInRange(RANGE["MIN"], RANGE["MAX"]);
+      const randomNumber = MissionUtils.Random.pickNumberInRange(
+        RANGE['MIN'],
+        RANGE['MAX']
+      );
       if (!generateNumbers.includes(randomNumber))
         generateNumbers.push(randomNumber);
     }
-    return generateNumbers.join("");
+    return generateNumbers.join('');
   }
 
-  pickNumberInRange(start, end) {
+  static pickNumberInRange(start, end) {
     return MissionUtils.Random.pickNumberInRange(start, end);
   }
 }
