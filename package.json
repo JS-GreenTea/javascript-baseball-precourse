@@ -20,8 +20,10 @@
       "eslint-config-prettier"
     ],
     "rules" : {
-      "no-undef" : 0
-    }
+      "no-undef" : 0,
+      "import/extensions": 0
+    },
+    "parser": "babel/parser"
   },
   "repository": {
     "type": "git",
