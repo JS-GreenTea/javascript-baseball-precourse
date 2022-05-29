@@ -83,6 +83,7 @@ export default class BaseballGame {
     if (strikeCount > 0 && ballCount === 0) return strikeCount + CALL.STRIKE;
     if (strikeCount === 0 && ballCount > 0) return ballCount + CALL.BALL;
     if (strikeCount === 0 && ballCount === 0) return CALL.NOTHING;
+    return null;
   }
 
   renderResult(playResult) {
