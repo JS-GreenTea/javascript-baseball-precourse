@@ -18,6 +18,7 @@ let randomNumber = [];
 
 const restartGame = () => {
   resultMessage.innerText = '';
+  userInput.value = '';
   restartButton.style.display = 'none';
   activateSubmitButton();
   randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
