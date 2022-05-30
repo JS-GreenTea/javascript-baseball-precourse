@@ -3,10 +3,11 @@ import BaseballGame from './BaseballGame.js';
 const baseballGame = new BaseballGame();
 
 const validateNumber = userInput => {
-  if (typeof userInput !== 'number') {
+  if (userInput.match(/[0-9]/g).length !== 3) {
     alert('잘못된 값을 입력하셨습니다.');
     return false;
   }
+  return true;
 };
 
 const submitButton = document.getElementById('submit');
