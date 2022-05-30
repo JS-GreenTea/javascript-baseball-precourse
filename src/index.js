@@ -24,6 +24,7 @@ const restartGame = () => {
 };
 
 const submitButtonClickHandler = event => {
+  event.preventDefault();
   if (!validateNumber(userInput.value)) {
     userInput.value = '';
     userInput.focus();
