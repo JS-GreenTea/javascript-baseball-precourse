@@ -20,7 +20,6 @@ const restartGame = () => {
   resultMessage.innerText = '';
   userInput.value = '';
   restartButton.style.display = 'none';
-  activateSubmitButton();
   randomNumber = MissionUtils.Random.pickUniqueNumbersInRange(1, 9, 3);
 };
 
@@ -37,10 +36,7 @@ const submitButtonClickHandler = event => {
   }
 };
 
-const activateSubmitButton = () => {
-  submitButton.addEventListener('click', submitButtonClickHandler);
-};
-
+submitButton.addEventListener('click', submitButtonClickHandler);
 restartButton.addEventListener('click', event => {
   restartGame();
 });
