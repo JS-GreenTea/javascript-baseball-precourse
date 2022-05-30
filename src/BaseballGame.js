@@ -47,14 +47,13 @@ class BaseballGame {
   }
 
   announceBallState() {
+    let resultMessage = this.ballStateToString();
     if (this.isWin()) {
-      resultMessage.innerText =
+      resultMessage =
         '<strong>🎉정답을 맞추셨습니다🎉</strong><br>' +
         '게임을 다시 시작하겠습니까?';
-      resultMessage.style.display = 'block';
-    } else {
-      resultMessage.innerText = this.ballStateToString();
     }
+    return resultMessage;
   }
 }
 
