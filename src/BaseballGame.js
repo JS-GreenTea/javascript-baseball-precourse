@@ -2,10 +2,9 @@ import BallState from './ballState.js';
 
 class BaseballGame {
   #ballState;
-  constructor() {
-    this.#ballState = new BallState();
-  }
+  constructor() {}
   play(computerInputNumbers, userInputNumbers) {
+    this.#ballState = new BallState();
     userInputNumbers = String(userInputNumbers);
     for (let i = 0; i < computerInputNumbers.length; i++) {
       if (this.isStrike(computerInputNumbers[i], userInputNumbers[i])) {
