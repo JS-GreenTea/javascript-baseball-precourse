@@ -7,18 +7,6 @@ const userInput = $('#user-input');
 const baseballGame = new BaseballGame();
 const render = new Render(baseballGame);
 
-const validateNumber = userInput => {
-  if (userInput.match(/[0-9]/g).length !== 3) {
-    alert('잘못된 값을 입력하셨습니다.');
-    return false;
-  }
-  return true;
-};
-
-const submitButton = document.getElementById('submit');
-const userInput = document.getElementById('user-input');
-const resultMessage = document.getElementById('result');
-const restartButton = document.getElementById('game-restart-button');
 let randomNumber = [];
 
 const submitButtonClickHandler = event => {
