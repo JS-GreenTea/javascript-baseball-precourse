@@ -34,7 +34,7 @@ class BaseballGame {
 
   isBall(computerInputNumbers, userInputNumber) {
     return computerInputNumbers
-      .split()
+      .split('')
       .find(number => number === userInputNumber);
   }
 
