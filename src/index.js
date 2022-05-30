@@ -16,7 +16,7 @@ const resultMessage = document.getElementById('result');
 const restartButton = document.getElementById('game-restart-button');
 let randomNumber = [];
 
-const init = () => {
+const restartGame = () => {
   resultMessage.innerText = '';
   restartButton.style.display = 'none';
   activateSubmitButton();
@@ -41,7 +41,7 @@ const activateSubmitButton = () => {
 };
 
 restartButton.addEventListener('click', event => {
-  init();
+  restartGame();
 });
 
-init();
+restartGame();
