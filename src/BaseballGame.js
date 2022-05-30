@@ -34,7 +34,9 @@ class BaseballGame {
   }
 
   isBall(computerInputNumbers, userInputNumber) {
-    return computerInputNumbers.find(number => number === userInputNumber);
+    return computerInputNumbers
+      .split()
+      .find(number => number === userInputNumber);
   }
 
   ballStateToString() {
