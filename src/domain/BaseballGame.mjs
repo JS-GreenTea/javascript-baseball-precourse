@@ -1,5 +1,9 @@
 import { DOM_ID, HINT, RESTART_TEMPLATE, STRING } from '../constants.mjs';
-import { pickComputerInputNumbers, joinHint } from '../utils.mjs';
+import {
+  pickComputerInputNumbers,
+  countBallandStrike,
+  joinHint,
+} from '../utils.mjs';
 
 import validateUserInput from './validator.mjs';
 
@@ -51,16 +55,10 @@ export default class BaseballGame {
       return HINT.CORRECT;
     }
 
-    let ballCount = 0;
-    let strikeCount = 0;
-
-    for (let i = 0; i < computerInputNumbers.length; i += 1) {
-      if (computerInputNumbers[i] === userInputNumbers[i]) {
-        strikeCount += 1;
-      } else if (userInputNumbers.indexOf(computerInputNumbers[i]) !== -1) {
-        ballCount += 1;
-      }
-    }
+    const { ballCount, strikeCount } = countBallandStrike(
+      computerInputNumbers,
+      userInputNumbers
+    );
 
     if (!strikeCount && !ballCount) {
       return HINT.NOTHING;

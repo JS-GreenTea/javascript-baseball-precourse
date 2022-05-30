@@ -13,6 +13,21 @@ const pickComputerInputNumbers = () => {
   return Array.from(result).join('');
 };
 
+const countBallandStrike = (computerInputNumbers, userInputNumbers) => {
+  let ballCount = 0;
+  let strikeCount = 0;
+
+  for (let i = 0; i < computerInputNumbers.length; i += 1) {
+    if (computerInputNumbers[i] === userInputNumbers[i]) {
+      strikeCount += 1;
+    } else if (userInputNumbers.indexOf(computerInputNumbers[i]) !== -1) {
+      ballCount += 1;
+    }
+  }
+
+  return { ballCount, strikeCount };
+};
+
 const joinHint = (ballCount, strikeCount) => {
   const ballHint = ballCount ? `${ballCount}${HINT.BALL}` : `${STRING.EMPTY}`;
   const strikeHint = strikeCount
@@ -22,4 +37,4 @@ const joinHint = (ballCount, strikeCount) => {
   return `${ballHint} ${strikeHint}`;
 };
 
-export { pickComputerInputNumbers, joinHint };
+export { pickComputerInputNumbers, countBallandStrike, joinHint };
