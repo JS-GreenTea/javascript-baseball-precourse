@@ -18,9 +18,6 @@ class BaseballGame {
       this.#ballState.addNothing();
     }
     this.announceBallState();
-    if (this.isWin()) {
-      submitButton.removeEventListener('click', submitButtonClickHandler);
-    }
     return this.ballStateToString();
   }
 
