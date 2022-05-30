@@ -1,4 +1,7 @@
 import BaseballGame from './BaseballGame.js';
+import { validateNumber, $ } from './util';
+
+const userInput = $('#user-input');
 
 const baseballGame = new BaseballGame();
 
@@ -37,8 +40,8 @@ const submitButtonClickHandler = event => {
   }
 };
 
-submitButton.addEventListener('click', submitButtonClickHandler);
-restartButton.addEventListener('click', event => {
+$('#submit').addEventListener('click', submitButtonClickHandler);
+$('#game-restart-button').addEventListener('click', event => {
   restartGame();
 });
 
