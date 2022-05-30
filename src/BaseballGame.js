@@ -5,13 +5,14 @@ class BaseballGame {
   constructor() {}
   play(computerInputNumbers, userInputNumbers) {
     this.#ballState = new BallState();
-    userInputNumbers = String(userInputNumbers);
-    for (let i = 0; i < computerInputNumbers.length; i++) {
-      if (this.isStrike(computerInputNumbers[i], userInputNumbers[i])) {
+    userInputNumbers = String(userInputNumbers).split('');
+
+    for (let [i, userInputNumber] of userInputNumbers.entries()) {
+      if (this.isStrike(computerInputNumbers[i], userInputNumber)) {
         this.#ballState.addStrike();
         continue;
       }
-      if (this.isBall(computerInputNumbers, userInputNumbers[i])) {
+      if (this.isBall(computerInputNumbers, userInputNumber)) {
         this.#ballState.addBall();
         continue;
       }
