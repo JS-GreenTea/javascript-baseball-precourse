@@ -5,7 +5,7 @@ import {
   joinHint,
 } from '../utils.mjs';
 
-import validateUserInput from './validator.mjs';
+import validateUserInput from '../validation.mjs';
 
 export default class BaseballGame {
   constructor(inputView, resultView, submitBtn) {

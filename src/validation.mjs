@@ -1,4 +1,4 @@
-import { ALERT_MESSAGE } from '../constants.mjs';
+import { ALERT_MESSAGE } from './constants.mjs';
 
 const isNaN = (value) => Number.isNaN(Number(value));
 const includeSpace = (value) => !!value.match(/ /gi);
